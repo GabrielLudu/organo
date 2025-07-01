@@ -1,27 +1,25 @@
 import "./styles.css";
 
-const ListaSuspensa = ({
-  itens,
+const Campo = ({
   label,
+  placeholder,
   obrigatorio = false,
   valor,
+  type = "text",
   aoAlterar,
 }) => {
   return (
-    <div className="lista-suspensa">
+    <div className={`campo campo-${type}`}>
       <label>{label}</label>
-      <select
+      <input
+        type={type}
         required={obrigatorio}
+        placeholder={placeholder}
         value={valor}
         onChange={(evento) => aoAlterar(evento.target.value)}
-      >
-        <option />
-        {itens.map((item) => (
-          <option key={item}>{item}</option>
-        ))}
-      </select>
+      />
     </div>
   );
 };
 
-export default ListaSuspensa;
+export default Campo;

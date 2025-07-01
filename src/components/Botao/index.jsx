@@ -1,7 +1,7 @@
 import "./styles.css";
 
-const Botao = ({ children }) => {
-  return <button className="botao">{children}</button>;
+const Botao = ({ texto }) => {
+  return <button className="botao">{texto}</button>;
 };
 
 export default Botao;
