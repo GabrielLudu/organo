@@ -4,6 +4,7 @@ import Time from "./components/Time";
 import Rodape from "./components/Rodape";
 import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
+import BotaoToggle from "./components/BotaoToggle";
 
 function App() {
   const [times, setTimes] = useState([
@@ -264,6 +265,7 @@ function App() {
   ];
 
   const [cards, setCards] = useState(inicial);
+  const [form, setForm] = useState(true);
 
   function deletarCard(id) {
     setCards(cards.filter((card) => card.id !== id));
@@ -292,17 +294,25 @@ function App() {
       })
     );
   }
+  function resolverVisibilidade() {
+    setForm(!form);
+  }
 
   return (
     <div>
       <Banner />
       <Formulario
+        visibilidadeForm={form}
         cadastrarTime={cadastrarTime}
         times={times.map((time) => time.nome)}
         aoCardCadastrado={(card) => setCards([...cards, card])}
       />
       <section className="times">
-        <h1>Minha organização</h1>
+        <div className="header">
+          <h1>Minha organização:</h1>
+          <BotaoToggle alterarVisibilidade={resolverVisibilidade} />
+        </div>
+
         {times.map((time, indice) => (
           <Time
             aoFavoritar={resolverFavorito}
